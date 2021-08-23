@@ -10,6 +10,7 @@
       <div id="container">
         <div id="panel">
           <h1>Office Hours</h1>
+          <input type="number" id="quantity" value="1">
             <button type="submit" id="btn">Pay</button>
         </div>
       </div>
@@ -18,30 +19,31 @@
   <script>
     const stripe = Stripe('pk_test_51J83vBHegBXMg0ahtceAMDKDcXjEMfTF39tmZIqFBZu3HKZJXgdkEag54ilUio6y8mijVWmj3OoCb4AhmGpEpR2W00V5pDelfY')
     let payBtn = document.getElementById('btn')
+    let quantity = document.getElementById('quantity')
 
-    payBtn.addEventListener('click', (ev) => {
+    // payBtn.addEventListener('click', (ev) => {
       
-      ev.preventDefault();
+    //   ev.preventDefault();
     
-        fetch('/create-checkout-session', {
-      method: 'POST',
-      headers:
-      {
-        'Content-Type': 'application/json; charset=utf-8'
-      }
-      ,
-      body: JSON.stringify({
-        quantity: 1
-      })
-    })
+    //     fetch('/create-checkout-session', {
+    //   method: 'POST',
+    //   headers:
+    //   {
+    //     'Content-Type': 'application/json; charset=utf-8'
+    //   }
+    //   ,
+    //   body: JSON.stringify({
+    //     quantity: quantity.value
+    //   })
+    // })
 
-        .then( (response) => { response.json() })
-        .then( (session) => {
-          stripe.redirectToCheckout({sessionId: session.id})
-        } )
-        .catch( (error) => {'Error:', error})
+    //     .then( (response) => { response.json() })
+    //     .then( (session) => {
+    //       stripe.redirectToCheckout({sessionId: session.id})
+    //     } )
+    //     .catch( (error) => {'Error:', error})
   
-      })
+    //   })
     
  
   </script>

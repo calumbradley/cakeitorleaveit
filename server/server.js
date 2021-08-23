@@ -21,23 +21,43 @@ let port = process.env.PORT;
 //Proves we are getting the env variables
 // console.log(port);
 
+// app.post('/create-checkout-session', async (req, res) => {
+//   const session = await stripe.checkout.sessions.create({
+//     line_items: [
+//       {
+//         quantity: req.body.quantity,
+//         // price_data: , variable price
+//         price: "price_1JQzhbHegBXMg0ahcQVD9DBI",
+//       },
+//     ],
+//     payment_method_types: ["card"],
+//     mode: "payment",
+//     success_url: `http://localhost:4242/success?id={CHECKOUT_SESSION_ID}`,
+//     cancel_url: `http://localhost:4242/cancel`,
+//   });
+// res.redirect(303, session.url)
+
+// })
+
+//Working version
+
 app.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
-
-    success_url: `http://localhost:${process.env.PORT}/success`,
-            cancel_url: `http://localhost:${process.env.PORT}/cancel`,
-            payment_method_types: ['card'],
-            mode: 'payment',
-            line_items: [
-              {
-                // price_data: , variable price
-                price: 'price_1JQzhbHegBXMg0ahcQVD9DBI',
-                quantity: 1
-              },
-            ],
-
+    line_items: [
+      {
+        // TODO: replace this with the `price` of the product you want to sell
+        price: 'price_1JQzhbHegBXMg0ahcQVD9DBI',
+        quantity: 1,
+      },
+    ],
+    payment_method_types: [
+      'card',
+    ],
+    mode: 'payment',
+    success_url: `http://localhost/success.html`,
+    cancel_url: `http://localhost/cancel.html`,
   })
-res.json({id: session.id})
+  res.redirect(303, session.url)
 
 })
 
