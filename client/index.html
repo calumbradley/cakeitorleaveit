@@ -19,30 +19,31 @@
     const stripe = Stripe('pk_test_51J83vBHegBXMg0ahtceAMDKDcXjEMfTF39tmZIqFBZu3HKZJXgdkEag54ilUio6y8mijVWmj3OoCb4AhmGpEpR2W00V5pDelfY')
     let payBtn = document.getElementById('btn')
 
-    payBtn.addEventListener();
-    
-  //   (ev) => {
+    payBtn.addEventListener('click', (ev) => {
       
-  //     ev.preventDefault()
+      ev.preventDefault();
     
-  //     fetch('/create-checkout-session', {
-  //   method: 'POST',
-  //   headers:
-  //   {
-  //     'Content-Type': 'application/json; charset=utf-8'
-  //   }
-  //   ,
-  //   body: JSON.stringify({
-  //     quantity: 1
-  //   })
-  // })
-  //     .then( (response) => { response.json() })
-  //     .then( (session) => {
-  //       stripe.redirectToCheckout({sessionId: session.id})
-  //     } )
-  //     .catch( (error) => {'Error:', error})
+        fetch('/create-checkout-session', {
+      method: 'POST',
+      headers:
+      {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+      ,
+      body: JSON.stringify({
+        quantity: 1
+      })
+    })
 
-    // })
+        .then( (response) => { response.json() })
+        .then( (session) => {
+          stripe.redirectToCheckout({sessionId: session.id})
+        } )
+        .catch( (error) => {'Error:', error})
+  
+      })
+    
+ 
   </script>
   </body>
 </html>
