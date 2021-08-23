@@ -10,14 +10,39 @@
       <div id="container">
         <div id="panel">
           <h1>Office Hours</h1>
-
+            <button type="submit" id="btn">Pay</button>
         </div>
       </div>
     </div>
     <script src="https://js.stripe.com/v3/"></script>
   <script>
-    const Stripe = Stripe('pk_test_51J83vBHegBXMg0ahtceAMDKDcXjEMfTF39tmZIqFBZu3HKZJXgdkEag54ilUio6y8mijVWmj3OoCb4AhmGpEpR2W00V5pDelfY')
+    const stripe = Stripe('pk_test_51J83vBHegBXMg0ahtceAMDKDcXjEMfTF39tmZIqFBZu3HKZJXgdkEag54ilUio6y8mijVWmj3OoCb4AhmGpEpR2W00V5pDelfY')
+    let payBtn = document.getElementById('btn')
 
+    payBtn.addEventListener();
+    
+  //   (ev) => {
+      
+  //     ev.preventDefault()
+    
+  //     fetch('/create-checkout-session', {
+  //   method: 'POST',
+  //   headers:
+  //   {
+  //     'Content-Type': 'application/json; charset=utf-8'
+  //   }
+  //   ,
+  //   body: JSON.stringify({
+  //     quantity: 1
+  //   })
+  // })
+  //     .then( (response) => { response.json() })
+  //     .then( (session) => {
+  //       stripe.redirectToCheckout({sessionId: session.id})
+  //     } )
+  //     .catch( (error) => {'Error:', error})
+
+    // })
   </script>
   </body>
 </html>
