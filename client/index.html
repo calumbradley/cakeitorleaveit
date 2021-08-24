@@ -3,10 +3,196 @@
   <head>
     <title></title>
     <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="styles.css">
+<style>
+  select{display: block;}
+</style>
+
   </head>
+
   <body>
-      <form action="/create-checkout-session" method="POST">
-        <button type="submit">Checkout</button>
-      </form>
+    <form action="/create-checkout-session" method="POST" onchange="calculateTotal()">
+      <div class="cakesWrapper" id="cakesWrapper">
+        <select
+          class="w3-select w3-margin"
+          id="cakeSize"
+          name="cakeSize"
+          required
+        >
+          <option value="">Select Size</option>
+          <option value="6">6" Cake</option>
+          <option value="8">8" Cake</option>
+          <option value="10">10" Cake</option>
+          <option value="12">12" Cake</option>
+        </select>
+
+        <div class="w3-margin-left" id="cakeShape">
+          <div>
+            <label for="round">Round Cake</label>
+            <input
+              type="radio"
+              name="selectedcake"
+              value="round"
+              id="round"
+              class="w3-radio w3-margin-right"
+              required
+            />
+            
+          </div>
+          <div>
+            <label for="square">Square Cake</label>
+            <input
+              type="radio"
+              name="selectedcake"
+              value="square"
+              id="square"
+              class="w3-radio w3-margin-right"
+              required
+            />
+            
+          </div>
+        </div>
+
+        <select
+          class="w3-select w3-margin"
+          id="sponge"
+          onchange="hideShowOtherSpongeTextArea()"
+          name="sponge"
+          required
+        >
+          <option value="">Select Sponge</option>
+          <option value="plain">Plain</option>
+          <option value="lemon">Lemon</option>
+          <option value="chocolate">Chocolate</option>
+          <option value="carrotCake">Carrot Cake</option>
+          <option value="otherSpongeFlavour">Other Flavour</option>
+        </select>
+
+        <textarea
+          name="specifySpongeFlavour"
+          placeholder="Specify Sponge flavour.."
+          rows="1"
+          cols="80"
+          id="spongeTextArea"
+          class="w3-input w3-margin"
+          maxlength="40"
+        >
+        </textarea>
+
+        <select
+          class="w3-select w3-margin-left w3-margin-right"
+          name="butterCream"
+          id="butterCream"
+          required
+        >
+          <option value="">Select Butter Cream</option>
+          <option value="vanilla">Vanilla</option>
+          <option value="chocolate">Chocolate</option>
+          <option value="vanillaCreamCheese">Vanilla Cream Cheese</option>
+          <option value="lemon">Lemon</option>
+          <option value="lemonCurd">Lemon Curd</option>
+        </select>
+
+        <div class="w3-margin" id="checkBoxes">
+          <div>
+            <input
+              id="icing"
+              class="w3-check w3-margin-right"
+              type="checkbox"
+            />
+            <label for="icing">Icing</label>
+          </div>
+
+          <div id="Decoration">
+            <input
+              id="custom"
+              class="w3-check w3-margin-right"
+              type="checkbox"
+              onclick="hideShowDecTextArea()"
+            />
+            <label for="custom">Decoration</label>
+            <textarea
+              name="decorationText"
+              placeholder="Enter decoration requests.."
+              rows="3"
+              cols="80"
+              id="decTextArea"
+              class="w3-input w3-margin"
+              maxlength="150"
+            ></textarea>
+          </div>
+
+          <div id="cakeMessagediv">
+            <input
+              id="cakeMessage"
+              class="w3-check w3-margin-right"
+              type="checkbox"
+              onclick="hideShowCakeMessageTextArea()"
+            />
+            <label for="cakeMessage">Message</label>
+            <textarea
+              name="cakeMessageTextArea"
+              placeholder="Enter cake message.."
+              rows="1"
+              cols="80"
+              id="cakeMessageTextArea"
+              class="w3-input w3-margin"
+              maxlength="32"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- <div class="refPhoto">
+          <label for="filecakes" id="filecakesLab">Reference photo: </label>
+          <input
+            type="file"
+            name="filecakes"
+            value="filecakes"
+            id="filecakes"
+            class=""
+          />
+        </div> -->
+
+        <p>Date required:</p>
+
+        <input
+          class="w3-input w3-padding-16 w3-margin"
+          name="datetime"
+          type="date"
+          id="dateAndTimeReq"
+          required
+        />
+
+        <!-- Delivery/Collection -->
+
+        <div class="w3-margin-left">
+          <label for="delivery">Delivery</label>
+          <input
+            type="radio"
+            name="delcol"
+            id="delivery"
+            class="w3-radio w3-margin-right"
+            onclick="getdelorcol()"
+          />
+          <label for="collection">Collection</label>
+          <input
+            type="radio"
+            name="delcol"
+            id="collection"
+            class="w3-radio w3-margin-right"
+            onclick="getdelorcol()"
+          />
+        </div>
+
+        <p>Price</p>
+        <p id="price"></p>
+
+        <div id="buttonContainer" class="w3-display-container">
+          <button type="submit">Checkout</button>
+        </div>
+      </div>
+    </form>
+    <script src="./js/calc.js"></script>
   </body>
 </html>

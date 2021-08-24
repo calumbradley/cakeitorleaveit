@@ -18,8 +18,6 @@ app.use((req, res, next) => {
 });
 
 let port = process.env.PORT;
-//Proves we are getting the env variables
-// console.log(port);
 
 // app.post('/create-checkout-session', async (req, res) => {
 //   const session = await stripe.checkout.sessions.create({
