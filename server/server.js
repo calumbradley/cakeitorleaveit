@@ -19,24 +19,6 @@ app.use((req, res, next) => {
 
 let port = process.env.PORT;
 
-// app.post('/create-checkout-session', async (req, res) => {
-//   const session = await stripe.checkout.sessions.create({
-//     line_items: [
-//       {
-//         quantity: req.body.quantity,
-//         // price_data: , variable price
-//         price: "price_1JQzhbHegBXMg0ahcQVD9DBI",
-//       },
-//     ],
-//     payment_method_types: ["card"],
-//     mode: "payment",
-//     success_url: `http://localhost:4242/success?id={CHECKOUT_SESSION_ID}`,
-//     cancel_url: `http://localhost:4242/cancel`,
-//   });
-// res.redirect(303, session.url)
-
-// })
-
 //Working version
 
 app.post("/create-checkout-session", async (req, res) => {
