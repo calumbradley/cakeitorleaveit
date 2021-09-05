@@ -21,6 +21,8 @@ let port = process.env.PORT;
 
 //Working version
 
+const price = 5795
+
 app.post("/create-checkout-session", async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
@@ -28,9 +30,9 @@ app.post("/create-checkout-session", async (req, res) => {
       {
         price_data: {
           currency: "gbp",
-          unit_amount: 2000,
+          unit_amount: price,
           product_data: {
-            name: "T-shirt",
+            name: "CakeItOrLeaveIt",
             // description: "", cake it or leave it description
             // images: [], cake it or leave it logo
           },
