@@ -7,104 +7,111 @@
 </head>
 
 <body>
-  <form action="/create-checkout-session" method="POST" onchange="calculateTotal()" class="">
-    <div class="cakesWrapper" id="cakesWrapper">
-      <select class="" id="cakeSize" name="cakeSize" required>
-        <option value="">Select Size</option>
-        <option value="6">6" Cake</option>
-        <option value="8">8" Cake</option>
-        <option value="10">10" Cake</option>
-        <option value="12">12" Cake</option>
-      </select>
 
-      <div class="-left" id="cakeShape">
-        <div>
-          <label for="round">Round Cake</label>
-          <input type="radio" name="selectedcake" value="round" id="round" class="" required />
-
+  <div class="container px-5 my-5">
+    <form id="cakeForm" action="/create-checkout-session" method="POST" onchange="calculateTotal()">
+        <div class="mb-3">
+            <label class="form-label" for="cakeSize">Cake Size</label>
+            <select class="form-select" id="cakeSize" aria-label="Cake Size">
+                <option value='6"'>6&quot;</option>
+                <option value='8"'>8&quot;</option>
+                <option value='10"'>10&quot;</option>
+                <option value='12"'>12&quot;</option>
+                <option value='14"'>14&quot;</option>
+            </select>
         </div>
-        <div>
-          <label for="square">Square Cake</label>
-          <input type="radio" name="selectedcake" value="square" id="square" class="" required />
-
+        <div class="mb-3">
+            <label class="form-label d-block">Cake Shape</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" id="round" type="radio" name="cakeShape" data-sb-validations="" />
+                <label class="form-check-label" for="round">Round</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" id="square" type="radio" name="cakeShape" data-sb-validations="" />
+                <label class="form-check-label" for="square">Square</label>
+            </div>
         </div>
-      </div>
-
-      <select class="" id="sponge" onchange="hideShowOtherSpongeTextArea()" name="sponge" required>
-        <option value="">Select Sponge</option>
-        <option value="plain">Plain</option>
-        <option value="lemon">Lemon</option>
-        <option value="chocolate">Chocolate</option>
-        <option value="carrotCake">Carrot Cake</option>
-        <option value="otherSpongeFlavour">Other Flavour</option>
-      </select>
-
-      <textarea name="specifySpongeFlavour" placeholder="Specify Sponge flavour.." rows="1" cols="80"
-        id="spongeTextArea" class="" maxlength="40">
-        </textarea>
-
-      <select class="" name="butterCream" id="butterCream" required>
-        <option value="">Select Butter Cream</option>
-        <option value="vanilla">Vanilla</option>
-        <option value="chocolate">Chocolate</option>
-        <option value="vanillaCreamCheese">Vanilla Cream Cheese</option>
-        <option value="lemon">Lemon</option>
-        <option value="lemonCurd">Lemon Curd</option>
-      </select>
-
-      <div class="" id="checkBoxes">
-        <div>
-          <input id="icing" class="" type="checkbox" />
-          <label for="icing">Icing</label>
+        <div class="mb-3">
+            <label class="form-label" for="cakeSponge">Cake Sponge</label>
+            <select class="form-select" id="cakeSponge" aria-label="Cake Sponge">
+                <option value="Plain">Plain</option>
+                <option value="Lemon">Lemon</option>
+                <option value="Chocolate">Chocolate</option>
+                <option value="Carrot Cake">Carrot Cake</option>
+                <option value="Other Flavour">Other Flavour</option>
+            </select>
         </div>
-
-        <div id="Decoration">
-          <input id="custom" class="" type="checkbox" onclick="hideShowDecTextArea()" />
-          <label for="custom">Decoration</label>
-          <textarea name="decorationText" placeholder="Enter decoration requests.." rows="3" cols="80" id="decTextArea"
-            class="" maxlength="150"></textarea>
+        <div class="mb-3">
+            <label class="form-label" for="otherFlavour">Other flavour</label>
+            <input class="form-control" id="otherFlavour" type="text" placeholder="Other flavour" data-sb-validations="required" />
+            <div class="invalid-feedback" data-sb-feedback="otherFlavour:required">Other flavour is required.</div>
         </div>
-
-        <div id="cakeMessagediv">
-          <input id="cakeMessage" class="" type="checkbox" onclick="hideShowCakeMessageTextArea()" />
-          <label for="cakeMessage">Message</label>
-          <textarea name="cakeMessageTextArea" placeholder="Enter cake message.." rows="1" cols="80"
-            id="cakeMessageTextArea" class="" maxlength="32"></textarea>
+        <div class="mb-3">
+            <label class="form-label" for="buttercream">Buttercream</label>
+            <select class="form-select" id="buttercream" aria-label="Buttercream">
+                <option value="Vanilla">Vanilla</option>
+                <option value="Chocolate">Chocolate</option>
+                <option value="Vanilla Cream Cheese">Vanilla Cream Cheese</option>
+                <option value="Lemon">Lemon</option>
+                <option value="Lemon Curd">Lemon Curd</option>
+            </select>
         </div>
-      </div>
+        <div class="mb-3">
+            <div class="form-check form-switch">
+                <input class="form-check-input" id="icing" type="checkbox" name="icing" />
+                <label class="form-check-label" for="icing">Icing</label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-check form-switch">
+                <input class="form-check-input" id="decoration" type="checkbox" name="decoration" />
+                <label class="form-check-label" for="decoration">Decoration</label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="describeYourRequirements">Describe your requirements</label>
+            <textarea class="form-control" id="describeYourRequirements" type="text" placeholder="Describe your requirements" style="height: 10rem;" data-sb-validations="required"></textarea>
+            <div class="invalid-feedback" data-sb-feedback="describeYourRequirements:required">Describe your requirements is required.</div>
+        </div>
+        <div class="mb-3">
+            <div class="form-check form-switch">
+                <input class="form-check-input" id="cakeMessage" type="checkbox" name="cakeMessage" />
+                <label class="form-check-label" for="cakeMessage">Cake Message</label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="specifyCakeMessage">Specify Cake Message</label>
+            <input class="form-control" id="specifyCakeMessage" type="text" placeholder="Specify Cake Message" data-sb-validations="required" />
+            <div class="invalid-feedback" data-sb-feedback="specifyCakeMessage:required">Specify Cake Message is required.</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label d-block">Delivery / Collection</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" id="delivery" type="radio" name="deliveryCollection" data-sb-validations="" />
+                <label class="form-check-label" for="delivery">Delivery</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" id="collection" type="radio" name="deliveryCollection" data-sb-validations="" />
+                <label class="form-check-label" for="collection">Collection</label>
+            </div>
 
-      <!-- <div class="refPhoto">
-          <label for="filecakes" id="filecakesLab">Reference photo: </label>
-          <input
-            type="file"
-            name="filecakes"
-            value="filecakes"
-            id="filecakes"
-            class=""
-          />
-        </div> -->
+            <input class="" name="datetime" type="date" id="dateAndTimeReq" required />
 
-      <p>Date required:</p>
+        <div class="d-grid">
+            <button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
 
-      <input class="" name="datetime" type="date" id="dateAndTimeReq" required />
 
-      <!-- Delivery/Collection -->
+      <!--refPhoto-->
+      
 
-      <div class="">
-        <label for="delivery">Delivery</label>
-        <input type="radio" name="delcol" id="delivery" class="" onclick="getdelorcol()" />
-        <label for="collection">Collection</label>
-        <input type="radio" name="delcol" id="collection" class="" onclick="getdelorcol()" />
-      </div>
+      
 
       <p>Price</p>
       <p id="price"></p>
 
-      <div id="buttonContainer" class="">
-        <button type="submit">Checkout</button>
-      </div>
-    </div>
-  </form>
   <script src="./js/calc.js"></script>
 </body>
 
