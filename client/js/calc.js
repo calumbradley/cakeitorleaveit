@@ -1,6 +1,6 @@
 let cakePrices = new Array();
  
-cakePrices['Null'] = 0;
+//cakePrices['Null'] = 0;
 cakePrices['6'] = 4;
 cakePrices['8'] = 8;
 cakePrices['10'] = 12;
