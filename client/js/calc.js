@@ -6,124 +6,112 @@ cakePrices[10] = 12;
 cakePrices[12] = 15;
 
 function getCakeSizePrice() {
-
-  let selCakeSize = document.getElementById('cakeSize').value;
-  return parseInt(selCakeSize);
+  let cakeSizeEle = document.getElementById("cakeSize");
+  return cakePrices[cakeSizeEle.value];
 }
 
-let cakeShape = []
+function cakeShape() {
+  let cakeShape = [];
 
-cakeShape['round'] = 10;
-cakeShape['square'] = 15;
-
-function getCakeShape() {
+  cakeShape["round"] = 10;
+  cakeShape["square"] = 15;
 
   let cakeShapePrice = 0;
-  let getCakeShapes = document.getElementsByName('selectedcake');
-  for (let i = 0; i < getCakeShapes.length; i++) {
-
-    if (getCakeShapes[i].checked) {
-      cakeShapePrice = cakeShape[getCakeShapes[i].value];
+  let cakeShapesEle = document.getElementsByName("cakeShape");
+  for (let i = 0; i < cakeShapesEle.length; i++) {
+    if (cakeShapesEle[i].checked) {
+      cakeShapePrice = cakeShape[cakeShapesEle[i].value];
       break;
     }
   }
   return cakeShapePrice;
 }
 
-let spongePrices = new Array()
+let spongePrices = new Array();
 
-spongePrices[''] = 0;
-spongePrices['plain'] = 3;
-spongePrices['lemon'] = 4;
-spongePrices['chocolate'] = 4.50;
-spongePrices['carrotCake'] = 5;
-spongePrices['otherSpongeFlavour'] = 10;
+spongePrices["plain"] = 3;
+spongePrices["lemon"] = 4;
+spongePrices["chocolate"] = 4.5;
+spongePrices["carrotCake"] = 5;
+spongePrices["otherSpongeFlavour"] = 10;
 
 function getSpongePrice() {
-
-  let selectedSponge = document.getElementById('sponge');
-  let chosenSponge = spongePrices[selectedSponge.value];
-
-  return chosenSponge;
-
+  let spongeEle = document.getElementById("sponge");
+  // console.log(spongeEle);
+  // console.log(spongePrices);
+  // console.log(spongeEle.value);
+  return spongePrices[spongeEle.value];
 }
 
-let butterCream = []
+let butterCream = [];
 
-butterCream[''] = 0;
-butterCream['vanilla'] = 1;
-butterCream['chocolate'] = 2;
-butterCream['vanillaCreamCheese'] = 3;
-butterCream['lemon'] = 2;
-butterCream['lemonCurd'] = 3;
+butterCream[""] = 0;
+butterCream["vanilla"] = 1;
+butterCream["chocolate"] = 2;
+butterCream["vanillaCreamCheese"] = 3;
+butterCream["lemon"] = 2;
+butterCream["lemonCurd"] = 3;
 
 function getButterCreamPrice() {
-
-  let selectedButtercream = document.getElementById('butterCream');
+  let selectedButtercream = document.getElementById("butterCream");
   let chosenButterCream = butterCream[selectedButtercream.value];
 
   return chosenButterCream;
-
 }
 
 function getIcingSugar() {
-  let eleIceSugar = document.getElementById('icing');
+  let eleIceSugar = document.getElementById("icing");
   let icingSugar = 0;
 
   if (eleIceSugar.checked === true) {
     icingSugar = 5;
-  }
-
-  else {
+  } else {
     icingSugar = 0;
   }
 
   return icingSugar;
-
 }
 
 function decoration() {
-  let eleDecoration = document.getElementById('custom');
+  let eleDecoration = document.getElementById("custom");
   let decoration = 0;
 
   if (eleDecoration.checked === true) {
     decoration = 5;
-  }
-
-  else {
+  } else {
     decoration = 0;
   }
 
   return decoration;
-
 }
 function getdelorcol() {
-
-
-  let delivery = document.getElementById('delivery');
-  let collection = document.getElementById('collection');
+  let delivery = document.getElementById("delivery");
+  let collection = document.getElementById("collection");
   let delcolprice = 0;
-
 
   if (delivery.checked === true) {
     delcolprice = 4.95;
   }
 
   if (collection.checked === true) {
-
   }
 
   return delcolprice;
-
 }
 
 function calculateTotal() {
-  let cakePrice = getCakeSizePrice() + getSpongePrice() + getCakeShape() + getIcingSugar() + decoration() + getButterCreamPrice() + getdelorcol()
+  let cakePrice =
+    getCakeSizePrice() +
+    getSpongePrice() +
+    cakeShape() +
+    getIcingSugar() +
+    decoration() +
+    getButterCreamPrice() +
+    getdelorcol();
 
-  let price = document.getElementById('price');
+  let price = document.getElementById("price");
 
   price.innerHTML = "£" + cakePrice;
 
   return cakePrice;
-
 }
