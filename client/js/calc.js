@@ -4,6 +4,7 @@ cakePrices[6] = 4;
 cakePrices[8] = 8;
 cakePrices[10] = 12;
 cakePrices[12] = 15;
+cakePrices[14] = 18;
 
 function getCakeSizePrice() {
   let cakeSizeEle = document.getElementById("cakeSize");
@@ -45,6 +46,7 @@ function spongePrice() {
 
 let butterCream = [];
 
+butterCream["none"] = 0;
 butterCream["vanilla"] = 1;
 butterCream["chocolate"] = 2;
 butterCream["vanillaCreamCheese"] = 3;
@@ -108,7 +110,7 @@ function calculateTotal() {
 
   let price = document.getElementById("price");
 
-  price.innerHTML = "£" + cakePrice;
+  price.innerHTML = "£" + parseFloat(cakePrice).toFixed(2);
 
   return cakePrice;
 }

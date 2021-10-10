@@ -5,13 +5,18 @@
   <title></title>
   <script src="https://js.stripe.com/v3/"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
 </head>
 
-<style>#cakeForm > div:nth-child(4), #cakeForm > div:nth-child(8), #cakeForm > div:nth-child(10) {display: none;}</style>
+<style>
+  #cakeForm>div:nth-child(4),
+  #cakeForm>div:nth-child(8),
+  #cakeForm>div:nth-child(10) {
+    display: none;
+  }
+</style>
 
 <body>
-
   <div class="container px-5 my-5">
     <form id="cakeForm" action="/create-checkout-session" method="POST" onchange="calculateTotal()">
       <div class="mb-3">
@@ -46,14 +51,17 @@
         </select>
       </div>
       <div class="mb-3">
-        <label class="form-label" for="otherFlavour">Other flavour</label>
-        <input class="form-control" id="otherFlavour" type="text" placeholder="Other flavour"
+        <!-- <label class="form-label" for="otherFlavour">Specify flavour</label> -->
+        <input class="form-control" id="otherFlavour" type="text" placeholder="Other flavour..."
           data-sb-validations="required" />
-        <div class="invalid-feedback" data-sb-feedback="otherFlavour:required">Other flavour is required.</div>
+        <div class="invalid-feedback" data-sb-feedback="otherFlavour:required">
+          Other flavour is required.
+        </div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="buttercream">Buttercream</label>
         <select class="form-select" id="buttercream" aria-label="Buttercream">
+          <option value="none">None</option>
           <option value="vanilla">Vanilla</option>
           <option value="chocolate">Chocolate</option>
           <option value="vanillaCreamCheese">Vanilla Cream Cheese</option>
@@ -74,11 +82,12 @@
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label" for="decorationRequirements">Decoration Requirements</label>
-        <textarea class="form-control" id="decorationRequirements" type="text" placeholder="Decoration Requirements"
-          style="height: 10rem;" data-sb-validations="required"></textarea>
-        <div class="invalid-feedback" data-sb-feedback="decorationRequirements:required">Decoration Requirements is
-          required.</div>
+        <!-- <label class="form-label" for="decorationRequirements">Decoration Requirements</label> -->
+        <textarea class="form-control" id="decorationRequirements" type="text" placeholder="Decoration requirements..."
+          style="height: 10rem" data-sb-validations="required"></textarea>
+        <div class="invalid-feedback" data-sb-feedback="decorationRequirements:required">
+          Decoration Requirements is required.
+        </div>
       </div>
       <div class="mb-3">
         <div class="form-check form-switch">
@@ -87,16 +96,16 @@
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label" for="specifyCakeMessage">Specify Cake Message</label>
-        <input class="form-control" id="specifyCakeMessage" type="text" placeholder="Specify Cake Message"
+        <!-- <label class="form-label" for="specifyCakeMessage">Specify Cake Message</label> -->
+        <input class="form-control" id="specifyCakeMessage" type="text" placeholder="Cake Message..."
           data-sb-validations="required" />
-        <div class="invalid-feedback" data-sb-feedback="specifyCakeMessage:required">Specify Cake Message is required.
+        <div class="invalid-feedback" data-sb-feedback="specifyCakeMessage:required">
+          Specify Cake Message is required.
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label d-block">Delivery / Collection</label>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" id="delivery" type="radio" name="deliveryCollection" data-sb-validations="" />
+          <input class="form-check-input" id="delivery" type="radio" name="deliveryCollection" data-sb-validations=""/>
           <label class="form-check-label" for="delivery">Delivery</label>
         </div>
         <div class="form-check form-check-inline">
@@ -106,26 +115,26 @@
         </div>
       </div>
 
-      <input class="form-control" name="datetime" type="date" id="dateAndTimeReq" required />
+      <div class="mb-3">
+        <label class="mb-3" for="dateAndTimeReq">Date required</label>
+          <input class="form-control" name="datetime" type="date" id="dateAndTimeReq"/>
+        </div>
 
-
-      <div class="d-grid mt-3">
-        <button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button>
+      <div class="d-grid mb-3">
+        <button class="btn btn-primary btn-lg" id="submitButton" type="submit">
+          Submit
+        </button>
       </div>
 
-      <div>
+      <div class="mb-3">
         Price
         <div id="price"></div>
       </div>
-
-
     </form>
   </div>
 
   <!--refPhoto-->
-
-
-
+  
   <script src="./js/calc.js"></script>
   <script src="./js/visual.js"></script>
 </body>
