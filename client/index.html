@@ -19,6 +19,8 @@
 <body>
   <div class="container px-5 my-5">
     <form id="cakeForm" action="/create-checkout-session" method="POST" onchange="calculateTotal()">
+      <!-- <form id="cakeForm" onchange="calculateTotal()"> -->
+
       <div class="mb-3">
         <label class="form-label" for="cakeSize">Cake Size</label>
         <select class="form-select" id="cakeSize" aria-label="Cake Size">
@@ -105,7 +107,7 @@
       </div>
       <div class="mb-3">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" id="delivery" type="radio" name="deliveryCollection" data-sb-validations=""/>
+          <input class="form-check-input" id="delivery" type="radio" name="deliveryCollection" data-sb-validations="" />
           <label class="form-check-label" for="delivery">Delivery</label>
         </div>
         <div class="form-check form-check-inline">
@@ -117,8 +119,10 @@
 
       <div class="mb-3">
         <label class="mb-3" for="dateAndTimeReq">Date required</label>
-          <input class="form-control" name="datetime" type="date" id="dateAndTimeReq"/>
-        </div>
+        <input class="form-control" name="datetime" type="date" id="dateAndTimeReq" />
+      </div>
+
+      
 
       <div class="d-grid mb-3">
         <button class="btn btn-primary btn-lg" id="submitButton" type="submit">
@@ -134,9 +138,10 @@
   </div>
 
   <!--refPhoto-->
-  
+
   <script src="./js/calc.js"></script>
   <script src="./js/visual.js"></script>
+  <script src="./js/data.js"></script>
 </body>
 
 </html>
