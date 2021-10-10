@@ -1,4 +1,6 @@
-document.querySelector("#sponge").onchange = () => {otherFlavourEle()}
+document.querySelector("#sponge").onchange = () => {
+  otherFlavourEle();
+};
 
 let otherFlavourEle = () => {
   let otherFlavourEle = document.querySelector("#cakeForm > div:nth-child(4)");
@@ -7,6 +9,34 @@ let otherFlavourEle = () => {
     otherFlavourEle.style.display = "block";
   } else {
     otherFlavourEle.style.display = "none";
+  }
+};
+
+document.querySelector("#dec").onchange = () => {
+  decText();
+};
+
+let decText = () => {
+  if (document.getElementById("dec").checked === true) {
+    document.querySelector("#cakeForm > div:nth-child(8)").style.display =
+      "block";
+  } else {
+    document.querySelector("#cakeForm > div:nth-child(8)").style.display =
+      "none";
+  }
+};
+
+document.querySelector("#cakeMessage").onchange = () => {
+  cakeMessage();
+};
+
+let cakeMessage = () => {
+  // let otherFlavourEle = document.querySelector("#cakeMessage");
+
+  if (document.querySelector("#cakeMessage").checked === true) {
+    document.querySelector("#cakeForm > div:nth-child(10)").style.display = "block";
+  } else {
+    document.querySelector("#cakeForm > div:nth-child(10)").style.display = "none";
   }
 };
 

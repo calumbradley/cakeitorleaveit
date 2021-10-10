@@ -51,14 +51,12 @@ butterCream["vanillaCreamCheese"] = 3;
 butterCream["lemon"] = 2;
 butterCream["lemonCurd"] = 3;
 
-function getButterCreamPrice() {
-  let selectedButtercream = document.getElementById("butterCream");
-  let chosenButterCream = butterCream[selectedButtercream.value];
-
-  return chosenButterCream;
+function getButterCream() {
+  let butterCreamEle = document.getElementById("buttercream");
+  return butterCream[butterCreamEle.value];
 }
 
-function getIcingSugar() {
+function icingSugar() {
   let eleIceSugar = document.getElementById("icing");
   let icingSugar = 0;
 
@@ -72,7 +70,7 @@ function getIcingSugar() {
 }
 
 function decoration() {
-  let eleDecoration = document.getElementById("custom");
+  let eleDecoration = document.getElementById("dec");
   let decoration = 0;
 
   if (eleDecoration.checked === true) {
@@ -101,11 +99,11 @@ function getdelorcol() {
 function calculateTotal() {
   let cakePrice =
     getCakeSizePrice() +
-    getSpongePrice() +
+    spongePrice() +
     cakeShape() +
-    getIcingSugar() +
+    icingSugar() +
     decoration() +
-    getButterCreamPrice() +
+    getButterCream() +
     getdelorcol();
 
   let price = document.getElementById("price");
