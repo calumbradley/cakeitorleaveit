@@ -45,7 +45,6 @@ function getSpongePrice() {
 
 let butterCream = [];
 
-butterCream[""] = 0;
 butterCream["vanilla"] = 1;
 butterCream["chocolate"] = 2;
 butterCream["vanillaCreamCheese"] = 3;
