@@ -35,7 +35,7 @@ spongePrices["chocolate"] = 4.5;
 spongePrices["carrotCake"] = 5;
 spongePrices["otherSpongeFlavour"] = 10;
 
-function getSpongePrice() {
+function spongePrice() {
   let spongeEle = document.getElementById("sponge");
   // console.log(spongeEle);
   // console.log(spongePrices);
