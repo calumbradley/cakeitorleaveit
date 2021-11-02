@@ -1,6 +1,6 @@
 let cakeData = [];
 const addData = (ev) => {
-    // ev.preventDefault()
+     ev.preventDefault()
     //console.log('Sucessfully prevented form submission');
     //console.log('Creating data object');
  
@@ -21,16 +21,16 @@ const addData = (ev) => {
  
     let data =
     {
-        UniqueId: Date.now(),
-        cakeSize : document.getElementById('cakeSize').value,
-        cakeShape : selCakeShape,
-        sponge : document.getElementById('sponge').value,
-        butterCream: document.getElementById('buttercream').value,
-        icing: icing,
-        specialDecoration: document.querySelector("#decorationRequirements").value,
-        cakeMessage: document.querySelector("#specifyCakeMessage").value,
-        dateTime: document.querySelector("#dateAndTimeReq").value,
-        price: calculateTotal()
+        "UniqueId": Date.now(),
+        "cakeSize" : parseInt(document.getElementById('cakeSize').value),
+        "cakeShape" : selCakeShape,
+        "sponge" : document.getElementById('sponge').value,
+        "butterCream": document.getElementById('buttercream').value,
+        "icing": icing,
+        "specialDecoration": document.querySelector("#decorationRequirements").value,
+        "cakeMessage": document.querySelector("#specifyCakeMessage").value,
+        "dateTime": document.querySelector("#dateAndTimeReq").value,
+        "price": calculateTotal()
     }
     //console.log(`Customers unique ID is : ${data.id}`);
     //console.log(`Customers name is : ${data.name}`);
@@ -58,13 +58,15 @@ const addData = (ev) => {
 //Req - Represents a resource request.
 //Res - Represents the response to a request.
  
+ console.log(cakeData); 
+ console.log(typeof(cakeData)); 
  
-fetch('/data', options)
+fetch('/create-checkout-session', options)
   .then(res => { if (res.ok) {console.log('Success')}})
   .then(data => data);
 
   //remove the data from the array as a last step
-  cakeData.shift(data);
+  //cakeData.shift(data);
  
 //   document.querySelector('form').reset()
 }
