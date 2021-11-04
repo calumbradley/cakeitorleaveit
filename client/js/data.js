@@ -1,6 +1,6 @@
 let cakeData = [];
 const addData = (ev) => {
-     ev.preventDefault()
+     //ev.preventDefault()
     //console.log('Sucessfully prevented form submission');
     //console.log('Creating data object');
  
@@ -61,12 +61,12 @@ const addData = (ev) => {
  console.log(cakeData); 
  console.log(typeof(cakeData)); 
  
-fetch('/create-checkout-session', options)
+fetch('/data', options)
   .then(res => { if (res.ok) {console.log('Success')}})
   .then(data => data);
 
   //remove the data from the array as a last step
-  //cakeData.shift(data);
+  cakeData.shift(data);
  
 //   document.querySelector('form').reset()
 }
