@@ -54,18 +54,23 @@ app.post(
   }
 );
 
-app.post("/create-checkout-session", async (req, res) => {
+app.post('/data', (req, res) => {
+  console.log(req.body[0].price); //logs an int of 7 to the console
+  res.send({message : "Successful request"})
+})
 
-  let data = req.body[0].price
-  console.log(data);
-  
+let price = [{"cakePrice": 6000}]
+
+app.post("/create-checkout-session", async (req, res) => {
+ 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     line_items: [
       {
         price_data: {
           currency: "gbp",
-          unit_amount: 5795,
+          unit_amount: price[0].cakePrice,
+          //req.body[0].price, //errors with "TypeError: Cannot read properties of undefined (reading 'price')"
           product_data: {
             name: "CakeItOrLeaveIt",
             // description: "", cake it or leave it description
@@ -82,13 +87,6 @@ app.post("/create-checkout-session", async (req, res) => {
 
   res.redirect(303, session.url);
 });
-
-
-// app.post('/data', (req, res) => {
-//   console.log(req.body[0].UniqueId);
-//   console.log(req.body[0].price);
-//   res.send({message : "Successful request"})
-// });
 
 
 
