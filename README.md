@@ -1,17 +1,19 @@
-# CakeItOrLeaveIt
+# CakeItOrLeaveIt 🎂
 
-CakeItOrLeaveIt is a web app for selling and calculating the cost of cakes!
+CakeItOrLeaveIt is a web app for selling and calculating the cost of cakes! 🎂💰
 
 ## Installation
 
 Clone the repository and launch the server using node.
 
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome. 
+
+For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
-## License
+## License 📝
 
 MIT License
 
