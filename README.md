@@ -1,6 +1,6 @@
-# CakeItOrLeaveIt 🎂
+# CakeItOrLeaveIt 🎂💰
 
-CakeItOrLeaveIt is a web app for selling and calculating the cost of cakes! 🎂💰
+CakeItOrLeaveIt is a web app for selling and calculating the cost of cakes!
 
 ## Installation 💻
 
