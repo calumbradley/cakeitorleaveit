@@ -2,11 +2,8 @@ require("dotenv").config({ path: "../.env" });
 const express = require("express");
 const app = express();
 const { resolve } = require("path");
-// const bodyParser = require("body-parser");
 const path = require("path");
-//const { json } = require("body-parser");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 app.use(express.json()); //Used to parse JSON bodies
 app.use(express.urlencoded({ extended: true }));
