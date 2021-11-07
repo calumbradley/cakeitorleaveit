@@ -14,7 +14,6 @@ let port = process.env.PORT;
 // CURL -X POST http://localhost:4242/create-checkout-session -D '{"quantity": 1}' -H "Content-Type: application/json"
 
 app.post("/create-checkout-session", async (req, res) => {
-
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     line_items: [
@@ -35,17 +34,13 @@ app.post("/create-checkout-session", async (req, res) => {
     mode: "payment",
     success_url: `http://localhost:4242/success.html`,
     cancel_url: `http://localhost:4242/cancel.html`,
-
   });
 
   console.log(req.body[0]);
 
-  res.json({ id: session.id, 
-    url: session.url });
-
+  res.json({ id: session.id, url: session.url });
 
   // res.redirect(303, session.url);
 });
-
 
 app.listen(4242, () => console.log(`Node server listening on port ${port}!`));
