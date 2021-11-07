@@ -38,6 +38,8 @@ const addData = (ev) => {
    
     
     cakeData.push(data)
+
+    console.log(cakeData);
    
     localStorage.setItem('cakeData', JSON.stringify(cakeData));
    
@@ -52,23 +54,26 @@ const addData = (ev) => {
     'Content-Type': 'application/json; charset=utf-8'
   }
   ,
-  body: JSON.stringify(cakeData)
+  body: JSON.stringify(cakeData) 
 }
  
 //Req - Represents a resource request.
 //Res - Represents the response to a request.
  
- console.log(cakeData); 
- console.log(typeof(cakeData)); 
+//  console.log(cakeData); 
+ //console.log(typeof(cakeData)); 
  
-fetch('/data', options)
+fetch('/create-checkout-session', options)
   .then(res => { if (res.ok) {console.log('Success')}})
   .then(data => data);
 
   //remove the data from the array as a last step
   cakeData.shift(data);
+  //console.log(cakeData); 
+
  
 //   document.querySelector('form').reset()
+document.querySelector('form').submit
 }
 
 document.querySelector("#submitButton").addEventListener('click', addData);
