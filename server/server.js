@@ -36,11 +36,10 @@ app.post("/create-checkout-session", async (req, res) => {
     cancel_url: `http://localhost:4242/cancel.html`,
   });
 
-  console.log(req.body[0]);
-
-  res.json({ id: session.id, url: session.url });
-
-  // res.redirect(303, session.url);
+  // console.log(req.body[0]);
+  
+  console.log(session.url, session.line_items)
+  res.redirect(303, session.url);
 });
 
 app.listen(4242, () => console.log(`Node server listening on port ${port}!`));
