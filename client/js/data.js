@@ -21,16 +21,16 @@ const addData = (ev) => {
  
     let data =
     {
-        "UniqueId": Date.now(),
-        "cakeSize" : parseInt(document.getElementById('cakeSize').value),
-        "cakeShape" : selCakeShape,
-        "sponge" : document.getElementById('sponge').value,
-        "butterCream": document.getElementById('buttercream').value,
-        "icing": icing,
-        "specialDecoration": document.querySelector("#decorationRequirements").value,
-        "cakeMessage": document.querySelector("#specifyCakeMessage").value,
-        "dateTime": document.querySelector("#dateAndTimeReq").value,
-        "price": calculateTotal()
+        UniqueId: Date.now(),
+        cakeSize : parseInt(document.getElementById('cakeSize').value),
+        cakeShape : selCakeShape,
+        sponge : document.getElementById('sponge').value,
+        butterCream: document.getElementById('buttercream').value,
+        icing: icing,
+        specialDecoration: document.querySelector("#decorationRequirements").value,
+        cakeMessage: document.querySelector("#specifyCakeMessage").value,
+        dateTime: document.querySelector("#dateAndTimeReq").value,
+        price: calculateTotal()
     }
     //console.log(`Customers unique ID is : ${data.id}`);
     //console.log(`Customers name is : ${data.name}`);
@@ -38,8 +38,6 @@ const addData = (ev) => {
    
     
     cakeData.push(data)
-
-    console.log(cakeData);
    
     localStorage.setItem('cakeData', JSON.stringify(cakeData));
    
@@ -60,20 +58,16 @@ const addData = (ev) => {
 //Req - Represents a resource request.
 //Res - Represents the response to a request.
  
-//  console.log(cakeData); 
- //console.log(typeof(cakeData)); 
- 
 fetch('/create-checkout-session', options)
-  .then(res => { if (res.ok) {console.log('Success')}})
-  .then(data => data);
+.then(res => { if (res.ok) {console.log('Success', res)}})
+  .then(data => data).then(console.log(data))
 
-  //remove the data from the array as a last step
   cakeData.shift(data);
-  //console.log(cakeData); 
-
  
 //   document.querySelector('form').reset()
 document.querySelector('form').submit
 }
 
 document.querySelector("#submitButton").addEventListener('click', addData);
+
+// [0].price_data.unit_amount
