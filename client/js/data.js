@@ -1,5 +1,5 @@
 const addData = (ev) => {
-  ev.preventDefault()
+  ev.preventDefault();
   //console.log('Sucessfully prevented form submission');
   //console.log('Creating data object');
 
@@ -41,28 +41,24 @@ const addData = (ev) => {
 
   let options = {
     method: "POST",
-    headers : { 
-      'Content-Type': 'application/json'
+    headers: {
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   };
 
-  delete data.price
+  delete data.price;
 
   fetch("/test", options)
-.then(data => {
-  console.log('Success:', data);
-})
-.catch((error) => {
-  console.error('Error:', error);
-});
-
-
+    .then((data) => {
+      console.log("Success:", data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 
   //document.querySelector('form').reset()
   //document.querySelector('form').submit
-
-  
 };
 
 document.querySelector("#submitButton").addEventListener("click", addData);
