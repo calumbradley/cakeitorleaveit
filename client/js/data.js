@@ -1,5 +1,5 @@
 const addData = (ev) => {
-  ev.preventDefault();
+  //ev.preventDefault();
   //console.log('Sucessfully prevented form submission');
   //console.log('Creating data object');
 
@@ -32,7 +32,7 @@ const addData = (ev) => {
   };
   //console.log(`Customers unique ID is : ${data.id}`);
   //console.log(`Customers name is : ${data.name}`);
-  console.log(data);
+  console.log(data.price);
 
   localStorage.setItem("cakeData", JSON.stringify(data));
 
@@ -49,7 +49,7 @@ const addData = (ev) => {
 
   delete data.price;
 
-  fetch("/test", options)
+  fetch("/create-checkout-session", options)
     .then((data) => {
       console.log("Success:", data);
     })
