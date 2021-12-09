@@ -18,7 +18,7 @@
 
 <body>
   <div class="container px-5 my-5">
-    <form id="cakeForm" action="/create-checkout-session" method="POST" onchange="calculateTotal()">
+    <form id="cakeForm" onchange="calculateTotal()">
       <!-- <form id="cakeForm" onchange="calculateTotal()"> -->
 
       <div class="mb-3">
@@ -125,7 +125,7 @@
       
 
       <div class="d-grid mb-3">
-        <button class="btn btn-primary btn-lg" id="submitButton" type="submit">
+        <button class="btn btn-primary btn-lg" id="submitButton" type="button">
           Submit
         </button>
       </div>
