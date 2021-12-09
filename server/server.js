@@ -14,28 +14,27 @@ app.use(express.static("../client"));
 let port = process.env.PORT;
 
 app.post("/pay", async (req, res) => {
-  const product = req.body;
-  console.log(product);
+  console.log(req.body.items);
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
-    line_items: [
-      {
+    line_items: req.body.items.map(({ quantity, price }) => {
+      return {
         price_data: {
           currency: "gbp",
           product_data: {
-            name: "test",
+            name: "CakeItOrLeaveIt",
           },
-          unit_amount: 1000,
+          unit_amount: price,
         },
-        quantity: 1,
-      },
-    ],
+        quantity: quantity,
+      };
+    }),
     mode: "payment",
     success_url: `http://localhost:4242/success.html`,
     cancel_url: `http://localhost:4242/cancel.html`,
   });
 
-  res.json({ id: session.id });
+  res.json({ url: session.url });
 });
 
 app.listen(4242, () => console.log(`Node server listening on port ${port}!`));
