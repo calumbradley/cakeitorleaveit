@@ -23,7 +23,7 @@ app.post("/pay", async (req, res) => {
           product_data: {
             name: "CakeItOrLeaveIt",
           },
-          unit_amount: price,
+          unit_amount: parseFloat(price),
         },
         quantity: quantity,
       };
