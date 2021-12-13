@@ -1,5 +1,6 @@
 let cakePrices = new Array();
 
+cakePrices[0] = 0;
 cakePrices[6] = 4;
 cakePrices[8] = 8;
 cakePrices[10] = 12;
@@ -30,6 +31,7 @@ function cakeShape() {
 
 let spongePrices = new Array();
 
+spongePrices["noSpongeSelected"] = 0;
 spongePrices["plain"] = 3;
 spongePrices["lemon"] = 4;
 spongePrices["chocolate"] = 4.5;
@@ -46,6 +48,7 @@ function spongePrice() {
 
 let butterCream = [];
 
+butterCream["noButtercreamSelected"] = 0;
 butterCream["none"] = 0;
 butterCream["vanilla"] = 1;
 butterCream["chocolate"] = 2;
