@@ -1,147 +1,258 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-  <title></title>
-  <script src="https://js.stripe.com/v3/"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
-</head>
-
-<style>
-  #cakeForm>div:nth-child(4),
-  #cakeForm>div:nth-child(8),
-  #cakeForm>div:nth-child(10) {
-    display: none;
-  }
-</style>
+<html lang="en">
+<title>CakeItOrLeaveIt - Custom Cakes</title>
+<link rel="icon" type="image/x-icon" href="./assets/img/favicon.png" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<script src="https://js.stripe.com/v3/"></script>
+<link rel="stylesheet" href="w3_css_styles.css">
+<link rel="stylesheet" href="custom_styles.css">
 
 <body>
-  <div class="container px-5 my-5">
-    <form id="cakeForm" onchange="calculateTotal()">
-      <!-- <form id="cakeForm" onchange="calculateTotal()"> -->
 
-      <div class="mb-3">
-        <label class="form-label" for="cakeSize">Cake Size</label>
-        <select class="form-select" id="cakeSize" aria-label="Cake Size">
-          <option value="6">6&quot;</option>
-          <option value="8">8&quot;</option>
-          <option value="10">10&quot;</option>
-          <option value="12">12&quot;</option>
-          <option value="14">14&quot;</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <label class="form-label d-block">Cake Shape</label>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" value="round" type="radio" data-sb-validations="" name="cakeShape" />
-          <label class="form-check-label" for="round">Round</label>
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+        <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+            <a href="#home" class="w3-bar-item w3-button">CakeItOrLeaveIt</a>
+            <!-- Right-sided navbar links. Hide them on small screens -->
+            <div class="w3-right w3-hide-small">
+                <a href="#about" class="w3-bar-item w3-button">About</a>
+                <a href="#reviews" class="w3-bar-item w3-button">Reviews</a>
+                <a href="#order" class="w3-bar-item w3-button">Order</a>
+            </div>
         </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" value="square" type="radio" data-sb-validations="" name="cakeShape" />
-          <label class="form-check-label" for="square">Square</label>
-        </div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="cakeSponge">Cake Sponge</label>
-        <select class="form-select" id="sponge" aria-label="Cake Sponge">
-          <option value="plain">Plain</option>
-          <option value="lemon">Lemon</option>
-          <option value="chocolate">Chocolate</option>
-          <option value="carrotCake">Carrot Cake</option>
-          <option value="otherSpongeFlavour">Other Flavour</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <!-- <label class="form-label" for="otherFlavour">Specify flavour</label> -->
-        <input class="form-control" id="otherFlavour" type="text" placeholder="Other flavour..."
-          data-sb-validations="required" />
-        <div class="invalid-feedback" data-sb-feedback="otherFlavour:required">
-          Other flavour is required.
-        </div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="buttercream">Buttercream</label>
-        <select class="form-select" id="buttercream" aria-label="Buttercream">
-          <option value="none">None</option>
-          <option value="vanilla">Vanilla</option>
-          <option value="chocolate">Chocolate</option>
-          <option value="vanillaCreamCheese">Vanilla Cream Cheese</option>
-          <option value="lemon">Lemon</option>
-          <option value="lemonCurd">Lemon Curd</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <div class="form-check form-switch">
-          <input class="form-check-input" id="icing" type="checkbox" name="icing" />
-          <label class="form-check-label" for="icing">Icing</label>
-        </div>
-      </div>
-      <div class="mb-3">
-        <div class="form-check form-switch">
-          <input class="form-check-input" id="dec" type="checkbox" name="decoration" />
-          <label class="form-check-label" for="decoration">Decoration</label>
-        </div>
-      </div>
-      <div class="mb-3">
-        <!-- <label class="form-label" for="decorationRequirements">Decoration Requirements</label> -->
-        <textarea class="form-control" id="decorationRequirements" type="text" placeholder="Decoration requirements..."
-          style="height: 10rem" data-sb-validations="required"></textarea>
-        <div class="invalid-feedback" data-sb-feedback="decorationRequirements:required">
-          Decoration Requirements is required.
-        </div>
-      </div>
-      <div class="mb-3">
-        <div class="form-check form-switch">
-          <input class="form-check-input" id="cakeMessage" type="checkbox" name="cakeMessage" />
-          <label class="form-check-label" for="cakeMessage">Cake Message</label>
-        </div>
-      </div>
-      <div class="mb-3">
-        <!-- <label class="form-label" for="specifyCakeMessage">Specify Cake Message</label> -->
-        <input class="form-control" id="specifyCakeMessage" type="text" placeholder="Cake Message..."
-          data-sb-validations="required" />
-        <div class="invalid-feedback" data-sb-feedback="specifyCakeMessage:required">
-          Specify Cake Message is required.
-        </div>
-      </div>
-      <div class="mb-3">
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" id="delivery" type="radio" name="deliveryCollection" data-sb-validations="" />
-          <label class="form-check-label" for="delivery">Delivery</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" id="collection" type="radio" name="deliveryCollection"
-            data-sb-validations="" />
-          <label class="form-check-label" for="collection">Collection</label>
-        </div>
-      </div>
+    </div>
 
-      <div class="mb-3">
-        <label class="mb-3" for="dateAndTimeReq">Date required</label>
-        <input class="form-control" name="datetime" type="date" id="dateAndTimeReq" />
-      </div>
+    <!-- Header -->
+    <header class="w3-display-container w3-content w3-wide" style="max-width:1600px;min-width:500px" id="home">
+        <img class="w3-image" src="./assets/img/chocCake.jpeg" alt="CakeItOrLeaveIt Catering" width="1600" height="800">
+        <div class="w3-display-bottomleft w3-padding-large w3-opacity">
+            <h1 class="w3-xxlarge">Custom Cakes...</h1>
+        </div>
+    </header>
 
-      
+    <!-- Page content -->
+    <div class="w3-content" style="max-width:1100px">
 
-      <div class="d-grid mb-3">
-        <button class="btn btn-primary btn-lg" id="submitButton" type="button">
-          Submit
-        </button>
-      </div>
+        <!-- About Section -->
+        <div class="w3-row w3-padding-64" id="about">
+            <div class="w3-col m6 w3-padding-large w3-hide-small">
+                <img src="./assets/img/chocolateCakeSlices.jpg" class="w3-round w3-image w3-opacity-min"
+                    alt="Table Setting" width="600" height="750">
+            </div>
 
-      <div class="mb-3">
-        Price
-        <div id="price"></div>
-      </div>
-    </form>
-  </div>
+            <div class="w3-col m6 w3-padding-large">
+                <h1 class="w3-center">About CakeItOrLeaveIt</h1><br>
+                <h5 class="w3-center">Tradition since 2013</h5>
+                <p class="w3-large">The Catering was founded in blabla by Mr. Smith in Sandbach, Cheshire,
+                    Celebrate in style with a delicious personalised cake. All our cakes are baked fresh and come in a
+                    variety of flavours and sizes to to suit your needs! We will customise your cakes to satisfy your
+                    wildest dreams! We only use<span class="w3-tag w3-light-grey">the best</span>ingredients.</p>
+                <p class="w3-large w3-text-grey w3-hide-medium">If you require something a little bit more bespoke, our
+                    design team are on hand to create a one-off stunning centrepiece that will truly complete your day.
+                    Contact our team of talented designers for a full consultation to tell us about the cake of your
+                    dreams!</p>
+                <p class="w3-large w3-text-grey w3-hide-medium"> Ut sodales libero id accumsan sagittis. Pellentesque eu
+                    blandit ex, a efficitur mi. Sed molestie
+                    ultricies eros, nec tempor magna ultrices vitae. Aliquam ipsum lorem, sodales ut faucibus in,
+                    consectetur id purus. Duis imperdiet facilisis ligula, non bibendum diam porttitor ut. Aliquam ut
+                    sapien justo. Donec non risus ut nibh bibendum faucibus. Suspendisse at lorem vitae nisi
+                    pellentesque cursus quis dictum leo. Praesent et ultricies nibh.</p>
 
-  <!--refPhoto-->
+            </div>
+        </div>
 
-  <script src="./js/calc.js"></script>
-  <script src="./js/visual.js"></script>
-  <script src="./js/data.js"></script>
+        <hr>
+
+        <!-- Menu Section -->
+        <div class="w3-row w3-padding-64" id="reviews">
+            <div class="w3-col l6 w3-padding-large">
+                <h1 class="w3-center">Our Reviews</h1><br>
+
+                <h4><i>&quot;Fabulous cakes! Jackie Bradley&quot;</i></h4>
+                <p class="w3-text-grey">Lisa Sands - Crewe</p><br>
+
+                <h4><i>&quot;Thank you for an amazing cake, tasted delicious too!&quot;</i></h4>
+                <p class="w3-text-grey">Joanne Robinson - Warrington</p><br>
+
+                <h4><i>&quot;Thanks Jackie for another wonderful creation&quot;</i></h4>
+                <p class="w3-text-grey">Deb Bate - Crewe</p><br>
+
+                <h4><i>&quot;Jackie this is amazing!!!&quot;</i></h4>
+                <p class="w3-text-grey">Janet Jones - Lymm</p><br>
+
+                <h4><i>&quot;Thanks again Jackie for Dad's brilliant cake. It looked and tasted amazing&quot;</i></h4>
+                <p class="w3-text-grey">Clare Moores - Northwich</p>
+            </div>
+
+            <div class="w3-col l6 w3-padding-large">
+                <img src="./assets/img/portraitCupcake.jpeg" class="w3-round w3-image w3-opacity-min" alt="Menu"
+                    style="width:100%">
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Order Section -->
+        <div class="w3-container w3-padding-64" id="order">
+            <h1>Order</h1><br>
+
+            <div class="w3-row">
+
+                <form id="cakeForm" class="w3-container" onchange="calculateTotal()">
+
+                    <!-- user order details -->
+
+                    <!-- <div class="w3-margin-bottom">
+                            <div class="">
+                                <input type="text" class="w3-input" placeholder="First name" id="firstName">
+                            </div>
+                            <div class="">
+                                <input type="text" class="w3-input" placeholder="Last name" id="lastName">
+                            </div>
+                        </div>
+        
+                        <div class="w3-margin-bottom">
+                            <div class="">
+                                <input type="text" class="w3-input" id="inputAddress" placeholder="1234 Main St">
+                            </div>
+        
+                            <div class="">
+                                <input type="text" class="w3-input" id="inputAddress2"
+                                    placeholder="Apartment, studio, or floor">
+                            </div>
+                        </div>
+        
+        
+                        <div class="w3-margin-bottom">
+                            <div class="">
+                                <input type="text" class="w3-input" placeholder="County" id="county">
+                            </div>
+                            <div class="">
+                                <input type="text" class="w3-input" placeholder="Postcode" id="postcode">
+                            </div>
+                        </div> -->
+
+                    <div class="w3-margin-bottom">
+                        <select class="w3-select" id="cakeSize" aria-label="Cake Size">
+                            <option value="0" selected>Select Size</option>
+                            <option value="6">6&quot;</option>
+                            <option value="8">8&quot;</option>
+                            <option value="10">10&quot;</option>
+                            <option value="12">12&quot;</option>
+                            <option value="14">14&quot;</option>
+                        </select>
+                    </div>
+                    <div class="w3-margin-bottom">
+                        <div class="">
+                            <input class="w3-radio" id="round" value="round" type="radio" data-sb-validations=""
+                                name="cakeShape" />
+                            <label class="">Round</label>
+                        </div>
+                        <div class="">
+                            <input class="w3-radio" id="square" value="square" type="radio" data-sb-validations=""
+                                name="cakeShape" />
+                            <label class="">Square</label>
+                        </div>
+                    </div>
+                    <div class="w3-margin-bottom">
+                        <select class="w3-select" id="sponge" aria-label="Cake Sponge">
+                            <option value="noSpongeSelected" selected>Select Sponge</option>
+                            <option value="plain">Plain</option>
+                            <option value="lemon">Lemon</option>
+                            <option value="chocolate">Chocolate</option>
+                            <option value="carrotCake">Carrot Cake</option>
+                            <option value="otherSpongeFlavour">Other Flavour</option>
+                        </select>
+                    </div>
+                    <div class="w3-margin-bottom">
+                        <input class="w3-input" id="otherFlavour" type="text" placeholder="Other flavour..."
+                            data-sb-validations="required" />
+                    </div>
+                    <div class="w3-margin-bottom">
+                        <select class="w3-select" id="buttercream" aria-label="Buttercream">
+                            <option value="noButtercreamSelected" selected>Select Buttercream</option>
+                            <option value="none">None</option>
+                            <option value="vanilla">Vanilla</option>
+                            <option value="chocolate">Chocolate</option>
+                            <option value="vanillaCreamCheese">
+                                Vanilla Cream Cheese
+                            </option>
+                            <option value="lemon">Lemon</option>
+                            <option value="lemonCurd">Lemon Curd</option>
+                        </select>
+                    </div>
+
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="icing">
+                        <label class="form-check-label" for="icing">Icing</label>
+                    </div>
+
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="dec" name="decoration">
+                        <label class="form-check-label" for="dec">Decoration</label>
+                    </div>
+                    <div class="w3-margin-bottom">
+                        <input class="w3-input " id="decorationRequirements" placeholder="Decoration requirements..."
+                            data-sb-validations="required">
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="cakeMessage" name="cakeMessage">
+                        <label class="form-check-label" for="cakeMessage">Cake Message</label>
+                    </div>
+                    <div class="w3-margin-bottom">
+                        <input class="w3-input" id="specifyCakeMessage" type="text" placeholder="Cake Message..."
+                            data-sb-validations="required" />
+                    </div>
+                    <div class="w3-margin-bottom">
+                        <div class="">
+                            <input class="w3-radio" id="delivery" type="radio" name="deliveryCollection"
+                                data-sb-validations="" />
+                            <label class="">Delivery</label>
+                        </div>
+                        <div class="">
+                            <input class="w3-radio" id="collection" type="radio" name="deliveryCollection"
+                                data-sb-validations="" />
+                            <label class="">Collection</label>
+                        </div>
+                    </div>
+
+                    <div class="w3-margin-bottom">
+                        <input class="w3-input" name="datetime" type="date" id="dateAndTimeReq" />
+                    </div>
+
+
+                    <div class="w3-margin-bottom">
+                        <button class="btn btn-primary btn-lg" id="submitButton" type="button">
+                            Submit
+                        </button>
+                    </div>
+
+                    <div class="w3-margin-bottom">
+                        Price
+                        <div id="price"></div>
+                    </div>
+                </form>
+
+
+
+            </div>
+
+
+        </div>
+
+        <!-- End page content -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-center w3-light-grey w3-padding-32">
+        Copyright &copy; | CakeItOrLeaveIt |
+        <span id="dateTime"></span>
+    </footer>
+    <!-- scripts -->
+    <script src="./js/calc.js"></script>
+    <script src="./js/visual.js"></script>
+    <script src="./js/data.js"></script>
 </body>
 
 </html>
