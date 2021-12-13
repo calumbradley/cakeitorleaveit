@@ -7,16 +7,15 @@
     <meta name="description" content="CakeItOrLeaveIt - Custom Cakes" />
     <meta name="author" content="" />
     <title>CakeItOrLeaveIt - Custom Cakes</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
     <!-- Stripe Payments API -->
     <script src="https://js.stripe.com/v3/"></script>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
-        rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="styles.css" rel="stylesheet" />
     <!-- Some custom styles -->
@@ -25,6 +24,23 @@
         #cakeForm>div:nth-child(8),
         #cakeForm>div:nth-child(10) {
             display: none;
+        }
+
+        h6,
+        .h6,
+        h5,
+        .h5,
+        h4,
+        .h4,
+        h3,
+        .h3,
+        h2,
+        .h2,
+        h1,
+        .h1,
+        #page-top>nav>div>a,
+        #navbarResponsive>ul>li>a {
+            font-family: 'Handlee', cursive;
         }
     </style>
 </head>
@@ -52,8 +68,8 @@
         <div class="masthead-content">
             <div class="container px-5">
                 <h1 class="masthead-heading mb-0">Cake It Or Leave It</h1>
-                <h2 class="masthead-subheading mb-0">Custom Cakes</h2>
-                <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Learn More</a>
+                <h2 class="masthead-subheading mb-0">Custom Cakes in Cheshire</h2>
+                <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#order">Order</a>
             </div>
         </div>
         <!-- <div class="bg-circle-1 bg-circle"></div>
@@ -62,7 +78,7 @@
             <div class="bg-circle-4 bg-circle"></div> -->
     </header>
     <!-- Content section 1-->
-    <section id="scroll">
+    <section>
         <div class="container px-5">
             <div class="row gx-5 align-items-center">
                 <div class="col-lg-6 order-lg-2">
@@ -92,11 +108,11 @@
         </div>
     </section>
     <!-- Content section 2-->
-    <section>
+    <section id="order">
         <div class="container px-5">
             <div class="row gx-5 align-items-center">
                 <div class="col-sm">
-                    <div class="p-5">
+                    <div class="p-3">
                         <form id="cakeForm" onchange="calculateTotal()">
                             <!-- <form id="cakeForm" onchange="calculateTotal()"> -->
 
@@ -205,7 +221,44 @@
 
                             <div class="mb-3">
                                 <label class="mb-3" for="dateAndTimeReq">Date required</label>
-                                <input class="form-control" name="datetime" type="date" id="dateAndTimeReq" />
+                                <input class="form-control" name="datetime" type="date" id="dateAndTimeReq" required />
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label class="mb-1" for="firstName">First name</label>
+                                    <input type="text" class="form-control" placeholder="First name" id="firstName">
+                                </div>
+                                <div class="col">
+                                    <label class="mb-1" for="lastName">First name</label>
+                                    <input type="text" class="form-control" placeholder="Last name" id="lastName">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label class="mb-1" for="inputAddress">Address</label>
+                                    <input type="text" class="form-control" id="inputAddress"
+                                        placeholder="1234 Main St">
+                                </div>
+
+                                <div class="col">
+                                    <label class="mb-1" for="inputAddress2">Address 2</label>
+                                    <input type="text" class="form-control" id="inputAddress2"
+                                        placeholder="Apartment, studio, or floor">
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label class="mb-1" for="county">County</label>
+                                    <input type="text" class="form-control" placeholder="County" id="county">
+                                </div>
+                                <div class="col">
+                                    <label class="mb-1" for="postcode">Postcode</label>
+                                    <input type="text" class="form-control" placeholder="Postcode" id="postcode">
+                                </div>
                             </div>
 
                             <div class="d-grid mb-3">
@@ -248,7 +301,7 @@
                 </div>
                 <div class="col-lg-6 order-lg-2">
                     <div class="p-5">
-                        <img class="img-fluid rounded-circle" src="assets/img/03.jpg" alt="..." />
+                        <img class="img-fluid rounded-circle" src="assets/img/02.jpg" alt="..." />
                     </div>
                 </div>
             </div>
