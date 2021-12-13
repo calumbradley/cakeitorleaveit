@@ -3,7 +3,7 @@ document.querySelector("#sponge").onchange = () => {
 };
 
 let otherFlavourEle = () => {
-  let otherFlavourEle = document.querySelector("#cakeForm > div:nth-child(4)");
+  let otherFlavourEle = document.getElementById("otherFlavour");
 
   if (document.querySelector("#sponge").value === "otherSpongeFlavour") {
     otherFlavourEle.style.display = "block";
@@ -18,10 +18,10 @@ document.querySelector("#dec").onchange = () => {
 
 let decText = () => {
   if (document.getElementById("dec").checked === true) {
-    document.querySelector("#cakeForm > div:nth-child(8)").style.display =
+    document.querySelector("#decorationRequirements").style.display =
       "block";
   } else {
-    document.querySelector("#cakeForm > div:nth-child(8)").style.display =
+    document.querySelector("#decorationRequirements").style.display =
       "none";
   }
 };
@@ -34,9 +34,9 @@ let cakeMessage = () => {
   // let otherFlavourEle = document.querySelector("#cakeMessage");
 
   if (document.querySelector("#cakeMessage").checked === true) {
-    document.querySelector("#cakeForm > div:nth-child(10)").style.display = "block";
+    document.querySelector("#specifyCakeMessage").style.display = "block";
   } else {
-    document.querySelector("#cakeForm > div:nth-child(10)").style.display = "none";
+    document.querySelector("#specifyCakeMessage").style.display = "none";
   }
 };
 
