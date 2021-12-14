@@ -372,7 +372,7 @@ a {
   transition: opacity 0s;
 }
 .w3-input {
-  padding: 8px;
+  padding: 8px 0;
   display: block;
   border: none;
   border-bottom: 1px solid #ccc;
@@ -383,7 +383,9 @@ a {
   width: 100%;
   border: none;
   border-bottom: 1px solid #ccc;
+  color: #757575;
 }
+
 .w3-dropdown-click,
 .w3-dropdown-hover {
   position: relative;
