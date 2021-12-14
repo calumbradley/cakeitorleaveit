@@ -371,19 +371,24 @@ a {
 .w3-ripple {
   transition: opacity 0s;
 }
-.w3-input {
-  padding: 8px 0;
+.w3-input, .w3-input:focus {
+  padding: 8px;
   display: block;
   border: none;
   border-bottom: 1px solid #ccc;
   width: 100%;
+  color: #000000;
 }
-.w3-select {
-  padding: 9px 0;
+.w3-select, .w3-select:focus  {
+  padding: 9px;
   width: 100%;
   border: none;
   border-bottom: 1px solid #ccc;
-  color: #757575;
+  color: #000000;
+}
+
+::placeholder {
+  color: #000000;
 }
 
 .w3-dropdown-click,
