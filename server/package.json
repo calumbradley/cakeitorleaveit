@@ -1,13 +1,13 @@
 {
-  "name": "stripe-sample-demo",
+  "name": "cakeItOrLeaveIt",
   "version": "1.0.0",
-  "description": "A Stripe demo",
+  "description": "A cake pricing calculator and application for managing cake orders",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "stripe-demos",
+  "author": "Calum Bradley",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^10.0.0",
