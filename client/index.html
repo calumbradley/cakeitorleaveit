@@ -114,10 +114,12 @@
 
                     <div class="w3-margin-bottom">
 
-                        <input type="text" class="w3-input" id="inputAddress" placeholder=" 1234 Main St">
+                        <input type="text" class="w3-input" id="inputAddress" placeholder=" Address">
 
                         <input type="text" class="w3-input" id="inputAddress2"
-                            placeholder=" Apartment, studio, or floor">
+                            placeholder=" Apartment, suite, etc. (optional)">
+
+                        <input type="text" class="w3-input" id="city" placeholder=" City">
 
                         <select class="w3-select" id="county">
                             <option value="" selected>County</option>
@@ -330,7 +332,16 @@
                                 <option value="wicklow">Wicklow</option>
                             </optgroup>
                         </select>
-                        <input type="text" class="w3-input" placeholder=" Postcode" id="postcode">
+
+                        <div class="w3-row">
+                            <div class="w3-half">
+                                <input type="text" class="w3-input" placeholder=" Postcode" id="postcode">
+                            </div>
+                            <div class="w3-half">
+                                <input type="text" class="w3-input" placeholder=" Phone" id="phone" pattern="^(0\W*7\W*(?:\d\W*){9})$
+                                ">
+                            </div>
+                        </div>
 
                     </div>
 
