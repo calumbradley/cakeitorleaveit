@@ -4,19 +4,18 @@ const app = express();
 const { resolve } = require("path");
 const path = require("path");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-// const session = require('express-session')
 
 // app.use(express.urlencoded({ extended: false }));
 app.use(express.json()); //Used to parse JSON bodies
 app.use(express.static("../client"));
-// app.use(session({ secret: 'some session', cookie: { maxAge: 60000 }}))
 
 let port = process.env.PORT;
 
 app.post("/pay", async (req, res) => {
+  console.log(req.body.data); 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
-    line_items: req.body.items.map(({ quantity, price }) => {
+    line_items: req.body.data.map(({ quantity, price }) => {
       return {
         price_data: {
           currency: "gbp",
@@ -34,7 +33,8 @@ app.post("/pay", async (req, res) => {
   });
 
   res.json({ url: session.url });
-  delete req.body.items
+  delete req.body.data
+  console.log(req.body.data); 
 });
 
 app.listen(4242, () => console.log(`Node server listening on port ${port}!`));
