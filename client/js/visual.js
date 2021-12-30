@@ -18,11 +18,9 @@ document.querySelector("#dec").onchange = () => {
 
 let decText = () => {
   if (document.getElementById("dec").checked === true) {
-    document.querySelector("#decorationRequirements").style.display =
-      "block";
+    document.querySelector("#decorationRequirements").style.display = "block";
   } else {
-    document.querySelector("#decorationRequirements").style.display =
-      "none";
+    document.querySelector("#decorationRequirements").style.display = "none";
   }
 };
 
@@ -40,6 +38,11 @@ let cakeMessage = () => {
   }
 };
 
-   let dateTime = new Date();
+let currentdate = new Date();
+let plus7date = new Date();
+plus7date.setDate(plus7date.getDate() + 7);
+let yyyymmddplus7 = plus7date.toISOString().split("T")[0]; 
 
-   document.getElementById('dateTime').innerHTML = dateTime.getFullYear();
+document.getElementById("year").innerHTML = currentdate.getFullYear();
+
+document.getElementById("dateReq").setAttribute("min", yyyymmddplus7);
