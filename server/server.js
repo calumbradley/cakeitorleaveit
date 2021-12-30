@@ -28,8 +28,8 @@ app.post("/pay", async (req, res) => {
       };
     }),
     mode: "payment",
-    success_url: `http://localhost:4242/success.html`,
-    cancel_url: `http://localhost:4242/cancel.html`,
+    success_url: `http://localhost:${process.env.PORT}/success.html`,
+    cancel_url: `http://localhost:${process.env.PORT}/cancel.html`,
   });
 
   res.json({ url: session.url });
@@ -37,4 +37,4 @@ app.post("/pay", async (req, res) => {
   console.log(req.body.data); 
 });
 
-app.listen(4242, () => console.log(`Node server listening on port ${port}!`));
+app.listen(process.env.PORT, () => console.log(`Node server listening on port ${port}!`));
